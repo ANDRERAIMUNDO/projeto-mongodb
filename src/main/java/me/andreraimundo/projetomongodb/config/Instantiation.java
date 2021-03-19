@@ -10,7 +10,7 @@ import me.andreraimundo.projetomongodb.domain.User;
 import me.andreraimundo.projetomongodb.repository.UserRepository;
 
 @Configuration
-public class Instatiantion implements CommandLineRunner {
+public class Instantiation implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
 
