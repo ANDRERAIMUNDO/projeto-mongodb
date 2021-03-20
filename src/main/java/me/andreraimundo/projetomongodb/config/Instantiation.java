@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import me.andreraimundo.projetomongodb.domain.Post;
 import me.andreraimundo.projetomongodb.domain.User;
 import me.andreraimundo.projetomongodb.dto.AuthorDTO;
+import me.andreraimundo.projetomongodb.dto.CommentDTO;
 import me.andreraimundo.projetomongodb.repository.PostRepository;
 import me.andreraimundo.projetomongodb.repository.UserRepository;
 
@@ -38,10 +39,18 @@ public class Instantiation implements CommandLineRunner {
 
        Post post1 = new Post(null, new AuthorDTO(andre),//instaciando 
         simpleDateFormat.parse("20/03/2021"),
-        "Saida do Brazil", "Saida autorizada - pronto para transporte");
+        "Saida do Brazil", "Saida autorizada");
        Post post2 = new Post(null, new AuthorDTO(andre),
         simpleDateFormat.parse("19/03/2021"),
-        "Saida da Argentina", "Saida não autorizada - problema no carregamento");//instaciando 
+        "Saida da Argentina", "Saida não autorizada");//instaciando 
+        
+        CommentDTO commentDTO1 = new CommentDTO("pronto para transporte",
+         simpleDateFormat.parse("20/03/2021"), new AuthorDTO(raimundo));//instaciando 
+        CommentDTO commentDTO2 = new CommentDTO("problema no carregamento",
+         simpleDateFormat.parse("19/03/2021"), new AuthorDTO(raimundo));//instaciando 
+         
+       post1.getComments().addAll(Arrays.asList(commentDTO1));
+       post2.getComments().addAll(Arrays.asList(commentDTO2));
 
        postRepository.saveAll(Arrays.asList(post1, post2));//salvando
 
